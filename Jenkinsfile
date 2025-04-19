@@ -9,7 +9,10 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', 'https://github.com/AbhiramBelorkar/product-catalog-fullstack.git'
+                git(
+                    url: 'https://github.com/AbhiramBelorkar/product-catalog-fullstack.git',
+                    branch: 'main'
+                )
             }
         }
 
