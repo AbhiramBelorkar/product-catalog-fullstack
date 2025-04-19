@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        BACKEND_DIR = 'product.catalog'
+        BACKEND_DIR = 'product-catalog'
         FRONTEND_DIR = 'product-catalog-react'
     }
 
@@ -24,14 +24,15 @@ pipeline {
 
         stage('Copy Frontend to Backend') {
             steps {
-                bat "cp -r ${FRONTEND_DIR}/build/* ${BACKEND_DIR}/src/main/resources/static/"
+                // On Windows, use 'xcopy' or 'robocopy' instead of 'cp'
+                bat "xcopy /E /I /H /Y ${FRONTEND_DIR}\\build\\* ${BACKEND_DIR}\\src\\main\\resources\\static\\"
             }
         }
 
         stage('Build Backend') {
             steps {
                 dir("${BACKEND_DIR}") {
-                    bat './mvnw clean package'
+                    bat '.\\mvnw clean package' // Use .\\mvnw to run Maven Wrapper on Windows
                 }
             }
         }
@@ -39,6 +40,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying product-catalog-fullstack'
+                // Add any deploy steps you might need here (copy to server, restart, etc.)
             }
         }
     }
