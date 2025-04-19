@@ -16,22 +16,22 @@ pipeline {
         stage('Build Frontend') {
             steps {
                 dir("${FRONTEND_DIR}") {
-                    sh 'npm install'
-                    sh 'npm run build'
+                    bat 'npm install'
+                    bat 'npm run build'
                 }
             }
         }
 
         stage('Copy Frontend to Backend') {
             steps {
-                sh "cp -r ${FRONTEND_DIR}/build/* ${BACKEND_DIR}/src/main/resources/static/"
+                bat "cp -r ${FRONTEND_DIR}/build/* ${BACKEND_DIR}/src/main/resources/static/"
             }
         }
 
         stage('Build Backend') {
             steps {
                 dir("${BACKEND_DIR}") {
-                    sh './mvnw clean package'
+                    bat './mvnw clean package'
                 }
             }
         }
