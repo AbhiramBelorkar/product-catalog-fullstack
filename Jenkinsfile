@@ -42,8 +42,8 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                echo 'Deploying product-catalog-fullstack'
-                // Add any deploy steps you might need here (copy to server, restart, etc.)
+                echo 'Starting Spring Boot application...'
+                bat 'java -jar target\\*.jar'
             }
         }
     }
