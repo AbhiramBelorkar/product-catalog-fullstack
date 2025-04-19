@@ -28,7 +28,7 @@ pipeline {
         stage('Copy Frontend to Backend') {
             steps {
                 // On Windows, use 'xcopy' or 'robocopy' instead of 'cp'
-                bat "xcopy /E /I /H /Y ${FRONTEND_DIR}\\build\\* ${BACKEND_DIR}\\src\\main\\resources\\static\\"
+                bat "xcopy /E /I /H /Y ${FRONTEND_DIR}\\dist\\* ${BACKEND_DIR}\\src\\main\\resources\\static\\"
             }
         }
 
