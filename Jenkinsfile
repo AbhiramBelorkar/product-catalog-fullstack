@@ -35,7 +35,7 @@ pipeline {
         stage('Build Backend') {
             steps {
                 dir("${BACKEND_DIR}") {
-                    bat 'mvnw.cmd clean package' // Use .\\mvnw to run Maven Wrapper on Windows
+                    bat '"C:/Program Files/Apache/Maven/apache-maven-3.9.6/bin/mvn" clean package' // Use .\\mvnw to run Maven Wrapper on Windows
                 }
             }
         }
